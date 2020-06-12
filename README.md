@@ -1,2 +1,4 @@
-# coding_for_racecar_engineers
-Occasional articles on Coding for Racecar Engineers
+# Coding for Racecar Engineers
+A series of occasional articles on *Coding for Racecar Engineers* presented as interactive computational notebooks.
+
+Many of the notebooks are inspired by articles that originally appeared in [Racecar Engineering Magazine](https://www.racecar-engineering.com/).
