@@ -1,0 +1,9 @@
+name: racecar-coding
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - matplotlib
+  - pandas
+  - scipy
+  - sympy
