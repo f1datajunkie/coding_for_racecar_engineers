@@ -1,3 +1,17 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.5.0
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # Occupational Therapy — Notebook
 
 For many practising engineers, their notebook plays a key role in helping them keep their thoughts on track when working through a problem.
@@ -145,3 +159,33 @@ solve(diff(TC_RAD, F_z))[0][F_z]
 This gives $F_z=0.5/k_b$ which is the same as the expression for Equation 2 in the article:
 
 $L_p=\frac{1}{2.k_b}$
+
+
+The article then identifies the maximum traction circle radius as:
+
+$TC_{RAD\_MAX}=\frac{k_a.L_P}{2}$
+
+One of the major problems with maths notation used in Racecar Engineering magazine articles is that the symbols are often used inconsistently; for example, is $L_P$ of equation 3 intended to be the same as the previously derived $L_p$ from equation 2? As another example of notational ambiguity, in table 1, the value of $k_b$ is given as `5.0e-5 (1/N)`; the `(1/N)` component is presumably referring to the units rather than an unexplained part of the equation referring to some undeclared quantity `N`? (Many articles are all but impossible to follow without a lot of mental gymnastics trying to make sense of the garbled notation...)
+
+
+Moving on in the article, equation 4 provides expressions for determining front and rear cornering speeds using quantities:
+
+- $F_{xf}$: deduced front lateral force derived from equation 1;
+- $F_{yr}$: deduced rear lateral force derived from equation 1;
+- $wdf$: front weight distribution (per cent / 100);
+- $m_t$: total car mass (kg);
+- $iR$: peak corner curvature (1/m);
+- $V_x$: cornering speed (m/s).
+
+
+
+```python
+F_xf, F_yr, wdf, m_t, iR, V_x = symbols('F_xf F_yr wdf m_t iR V_x')
+
+F_xf = wdf * m_t * iR * V_x**2
+F_yr = (1 - wdf) * m_t * iR * V_x**2
+```
+
+The article then gives a view of a whole host of other settings in an Excel worksheet but no formulas to show how they gerneate the claimed results also show in the worksheet.
+
+In all the years I've read Racecar Engineer, I'm not sure I can recall a single article with a mathematical basis that I could replicate all the various elements myself... And this one is no different!
