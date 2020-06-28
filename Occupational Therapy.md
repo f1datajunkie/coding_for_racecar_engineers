@@ -131,7 +131,7 @@ from sympy import diff
 TC_RAD, F_z, k_a, k_b = symbols('TC_RAD F_z k_a k_b')
 
 # Redefine the equation
-TC_RAD = k_a *(1-k_b * F_z) * F_z
+TC_RAD = k_a *(1 - k_b * F_z) * F_z
 
 # Differentiate with respect to load, F_z
 diff(TC_RAD, F_z)
@@ -150,10 +150,13 @@ The result is a list of possible solutions (in Pyhton, a list represented by com
 We can extract the first solution (list index `0`) and display it:
 
 ```python
-solve(diff(TC_RAD, F_z))[0][F_z]
+L_P = symbols('L_P')
+
+L_P = solve(diff(TC_RAD, F_z))[0][F_z]
+L_P
 ```
 
-This gives $F_z=0.5/k_b$ which is the same as the expression for Equation 2 in the article:
+which is the same as the expression for Equation 2 in the article:
 
 $L_p=\frac{1}{2.k_b}$
 
@@ -161,6 +164,17 @@ $L_p=\frac{1}{2.k_b}$
 The article then identifies the maximum traction circle radius as:
 
 $TC_{RAD\_MAX}=\frac{k_a.L_P}{2}$
+
+
+We can computationally derive this by substituting in our value of `L_P` into the equation for `TC_RAD`:
+
+```python
+TC_RAD_MAX = k_a *(1 - k_b * L_P) * L_P
+TC_RAD_MAX
+```
+
+For $L_p=\frac{1}{2.k_b}$, this gives us the result of equation 3 in the article.
+
 
 One of the major problems with maths notation used in Racecar Engineering magazine articles is that the symbols are often used inconsistently; for example, is $L_P$ of equation 3 intended to be the same as the previously derived $L_p$ from equation 2? As another example of notational ambiguity, in table 1, the value of $k_b$ is given as `5.0e-5 (1/N)`; the `(1/N)` component is presumably referring to the units rather than an unexplained part of the equation referring to some undeclared quantity `N`? (Many articles are all but impossible to follow without a lot of mental gymnastics trying to make sense of the garbled notation...)
 
