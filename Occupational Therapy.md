@@ -130,9 +130,6 @@ from sympy import diff
 # Redefine the symbols
 TC_RAD, F_z, k_a, k_b = symbols('TC_RAD F_z k_a k_b')
 
-# Specify the desired k_a
-k_a = 5e-5
-
 # Redefine the equation
 TC_RAD = k_a *(1-k_b * F_z) * F_z
 
